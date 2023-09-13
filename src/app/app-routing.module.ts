@@ -9,17 +9,21 @@ import { LoginComponent } from './login/login.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { PermissionsService } from './services/permissions.service';
+import { AdminPermissionsService } from './services/admin-permissions.service';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'products', component: ProductsComponent},
-  {path:'shopping-cart', component: ShoppingCartComponent},
-  {path:'check-out', component: CheckOutComponent},
-  {path:'order-success', component: OrderSuccessComponent},
   {path:'login', component: LoginComponent},
-  {path:'admin/products', component: AdminProductsComponent},
-  {path:'admin/orders', component: AdminOrdersComponent},
-  {path:'my/orders', component: MyOrdersComponent},
+  {path:'shopping-cart', component: ShoppingCartComponent},
+
+  {path:'check-out', component: CheckOutComponent, canActivate:[PermissionsService]},
+  {path:'order-success', component: OrderSuccessComponent, canActivate:[PermissionsService]},
+  {path:'my/orders', component: MyOrdersComponent, canActivate:[PermissionsService]},
+
+  {path:'admin/products', component: AdminProductsComponent, canActivate:[AdminPermissionsService]},
+  {path:'admin/orders', component: AdminOrdersComponent, canActivate:[AdminPermissionsService]},
 
 ];
 
