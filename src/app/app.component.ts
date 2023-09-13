@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
+import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dummy-shop';
+  constructor(private authService: AuthenticationService, router: Router, userServeice: UserService){
+    authService.getAuthState().subscribe(user => {
+      if(user){
+        userServeice.save(user)
+        let returnUrl = localStorage.getItem('returnUrl');
+        if(returnUrl){
+          router.navigateByUrl(returnUrl)
+        }
+        else{
+          router.navigate(['/']);
+        }
+      }
+    })
+  }
 }
