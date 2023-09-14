@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
-import { AppUser } from '../models/app-user';
+import { AppUser } from '../models/interfaces';
 
 @Component({
   selector: 'bs-navbar',
@@ -23,6 +23,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
       this.authService.getAuthState().subscribe(user => {
         this.user = user;
         if (this.user) {
+          this.userService.save(this.user)
           this.getAppUser();
         }
       })
