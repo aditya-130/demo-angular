@@ -1,0 +1,15 @@
+.card-img-container {
+    width: 100%;
+    padding-top: 59.49%; /* (1 / 1.59) * 100% */
+    background-size: cover;
+    background-position: center;
+}
+.card-title{
+    height: 48px;
+}
+.card-footer{
+    padding: 0;
+}
+.sticky-top{
+    top: 80px;
+}
