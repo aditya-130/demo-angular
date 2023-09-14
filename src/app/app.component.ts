@@ -9,18 +9,5 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authService: AuthenticationService, router: Router, userServeice: UserService){
-    authService.getAuthState().subscribe(user => {
-      if(user){
-        userServeice.save(user)
-        let returnUrl = localStorage.getItem('returnUrl');
-        if(returnUrl){
-          router.navigateByUrl(returnUrl)
-        }
-        else{
-          router.navigate(['/']);
-        }
-      }
-    })
-  }
+  constructor(private authService: AuthenticationService, router: Router, userServeice: UserService){}
 }

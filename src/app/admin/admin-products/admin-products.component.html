@@ -1,1 +1,51 @@
-<p>admin-products works!</p>
+<!-- 
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+<p>
+    <input #query (keyup)="filter(query.value)" class="form-control" placeholder="search">
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of filteredProducts">
+            <td>{{product.payload.val()?.title}}</td>
+            <td>{{product.payload.val()?.price|currency:'INR':true}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', product.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+
+
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+<p>
+    <input #query (keyup)="filter(query.value)" class="form-control" placeholder="search">
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of filteredProducts">
+            <td>{{product.payload.val()?.title}}</td>
+            <td>{{product.payload.val()?.price|currency:'INR':true}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', product.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
