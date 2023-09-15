@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from '../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category, Product } from '../models/interfaces';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-products',
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
   constructor(private productService: ProductService,
      private categoryService: CategoryService,
-     private route: ActivatedRoute){}
+     private route: ActivatedRoute,
+     private shoppingCartService: ShoppingCartService){}
 
   public ngOnInit(): void {
 
@@ -47,5 +49,21 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
   public ngOnDestroy(): void {
     this.subscription.forEach(subscription => subscription.unsubscribe());
+  }
+
+  public addToCart(product: Product){
+    let cartID = localStorage.getItem('cartId');
+    if(!cartID){
+      this.shoppingCartService.create().then(
+        result => {
+          if (result.key){
+            localStorage.setItem('cartId',result.key)
+          }
+        }
+      );
+    }
+    else{
+      
+    }
   }
 }
